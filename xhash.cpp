@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QCryptographicHash>
+#include <QtConcurrentRun>
 #include "xhash.h"
 #include "ui_xhash.h"
 
@@ -12,7 +13,10 @@ XHash::XHash(QWidget *parent)
     , ui(new Ui::XHash)
 {
     ui->setupUi(this);
-
+    connect(this, &XHash::startWork, &variousHash, &VariousHash::doWork);
+    connect(&variousHash, &VariousHash::progressBarFileSetValue, this, &XHash::on_progressBarFileSetValue);
+    connect(&variousHash, &VariousHash::progressBarTotalAddValue, this, &XHash::on_progressBarTotalAddValue);
+    connect(&variousHash, &VariousHash::textBrowserAppendValue, this, &XHash::on_textBrowserAppendValue);
 }
 
 XHash::~XHash()
@@ -37,7 +41,6 @@ void XHash::on_pushButton_copy_clicked()
 
 void XHash::on_pushButton_browse_clicked()
 {
-    // TODO
     QStringList filePaths = QFileDialog::getOpenFileNames(this, "Open file...", "", "All files (*)");
 
     int filePaths_count = filePaths.count();
@@ -48,31 +51,7 @@ void XHash::on_pushButton_browse_clicked()
     ui->progressBar_total->setValue(0);
     ui->progressBar_total->setMaximum(filePaths_count);
 
-    foreach (QString filePath, filePaths) {
-        ui->progressBar_file->setValue(0);
-
-        QFile file(filePath);
-
-        if (!file.open(QIODevice::ReadOnly)) {
-            QMessageBox::information(this, tr("Unable to open file"),
-                                     file.errorString());
-        }else{
-            QCryptographicHash crypto(QCryptographicHash::Md5);
-            while(!file.atEnd()){
-              crypto.addData(file.read(8192));
-            }
-            QByteArray source;
-            QTextStream in(&file);
-            in >> source;
-            QString md5Value = QString(crypto.result().toHex());
-
-            ui->textBrowser->append(filePath);
-            ui->textBrowser->append("md5_value: "+md5Value+"\n");
-            ui->progressBar_file->setValue(100);
-        }
-
-        ui->progressBar_total->setValue(ui->progressBar_total->value()+1);
-    }
+    emit startWork(filePaths);
 }
 
 
@@ -98,9 +77,23 @@ void XHash::on_pushButton_save_clicked()
     }
 }
 
-
 void XHash::on_pushButton_stop_clicked()
 {
     // TODO
     ui->textBrowser->setText("on_pushButton_stop_clicked");
+}
+
+void XHash::on_progressBarFileSetValue(int i)
+{
+    ui->progressBar_file->setValue(i);
+}
+
+void XHash::on_progressBarTotalAddValue()
+{
+    ui->progressBar_total->setValue(ui->progressBar_total->value()+1);
+}
+
+void XHash::on_textBrowserAppendValue(QString theString)
+{
+    ui->textBrowser->append(theString);
 }
