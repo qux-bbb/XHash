@@ -20,6 +20,7 @@ private:
 
 signals:
     void progressBarFileSetValue(int i);
+    void hashTypeLabelSetValue(QString theString);
     void progressBarTotalAddValue();
     void textBrowserAppendValue(QString theString);
 };

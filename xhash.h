@@ -24,6 +24,7 @@ private slots:
     void on_pushButton_stop_clicked();
 
     void on_progressBarFileSetValue(int i);
+    void on_hashTypeLabelSetValue(QString theString);
     void on_progressBarTotalAddValue();
     void on_textBrowserAppendValue(QString theString);
 

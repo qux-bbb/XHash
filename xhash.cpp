@@ -15,6 +15,7 @@ XHash::XHash(QWidget *parent)
     ui->setupUi(this);
     connect(this, &XHash::startWork, &variousHash, &VariousHash::doWork);
     connect(&variousHash, &VariousHash::progressBarFileSetValue, this, &XHash::on_progressBarFileSetValue);
+    connect(&variousHash, &VariousHash::hashTypeLabelSetValue, this, &XHash::on_hashTypeLabelSetValue);
     connect(&variousHash, &VariousHash::progressBarTotalAddValue, this, &XHash::on_progressBarTotalAddValue);
     connect(&variousHash, &VariousHash::textBrowserAppendValue, this, &XHash::on_textBrowserAppendValue);
 }
@@ -86,6 +87,11 @@ void XHash::on_pushButton_stop_clicked()
 void XHash::on_progressBarFileSetValue(int i)
 {
     ui->progressBar_file->setValue(i);
+}
+
+void XHash::on_hashTypeLabelSetValue(QString theString)
+{
+    ui->label_hashType->setText(theString);
 }
 
 void XHash::on_progressBarTotalAddValue()
