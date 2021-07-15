@@ -19,7 +19,8 @@ private:
     void calcHash(QStringList filePaths);
 
 signals:
-    void progressBarFileSetValue(int i);
+    void progressBarFileSetValue(qint64 i);
+    void progressBarFileSetMaximum(qint64 i);
     void hashTypeLabelSetValue(QString theString);
     void progressBarTotalAddValue();
     void textBrowserAppendValue(QString theString);

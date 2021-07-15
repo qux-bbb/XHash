@@ -15,6 +15,7 @@ XHash::XHash(QWidget *parent)
     ui->setupUi(this);
     connect(this, &XHash::startWork, &variousHash, &VariousHash::doWork);
     connect(&variousHash, &VariousHash::progressBarFileSetValue, this, &XHash::on_progressBarFileSetValue);
+    connect(&variousHash, &VariousHash::progressBarFileSetMaximum, this, &XHash::on_progressBarFileSetMaximum);
     connect(&variousHash, &VariousHash::hashTypeLabelSetValue, this, &XHash::on_hashTypeLabelSetValue);
     connect(&variousHash, &VariousHash::progressBarTotalAddValue, this, &XHash::on_progressBarTotalAddValue);
     connect(&variousHash, &VariousHash::textBrowserAppendValue, this, &XHash::on_textBrowserAppendValue);
@@ -49,8 +50,8 @@ void XHash::on_pushButton_browse_clicked()
     if (filePaths_count==0)
         return;
 
-    ui->progressBar_total->setValue(0);
     ui->progressBar_total->setMaximum(filePaths_count);
+    ui->progressBar_total->setValue(0);
 
     emit startWork(filePaths);
 }
@@ -84,9 +85,14 @@ void XHash::on_pushButton_stop_clicked()
     ui->textBrowser->setText("on_pushButton_stop_clicked");
 }
 
-void XHash::on_progressBarFileSetValue(int i)
+void XHash::on_progressBarFileSetValue(qint64 i)
 {
     ui->progressBar_file->setValue(i);
+}
+
+void XHash::on_progressBarFileSetMaximum(qint64 i)
+{
+    ui->progressBar_file->setMaximum(i);
 }
 
 void XHash::on_hashTypeLabelSetValue(QString theString)
