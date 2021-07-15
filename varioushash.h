@@ -16,6 +16,7 @@ public:
     void doWork(QStringList filePaths);
 
 private:
+    void caclMostHash(QString hashTypeStr, QString filePath);
     void calcHash(QStringList filePaths);
 
 signals:
