@@ -17,7 +17,7 @@ void VariousHash::calcHash(QStringList filePaths)
         foreach (QString hashType, hashTypes) {
             calcMostHash(hashType, filePath);
             if(stopFlag){
-                signal_setCalcStatus(false);
+                emit signal_setCalcStatus(false);
                 return;
             }
         }
@@ -75,7 +75,7 @@ void VariousHash::calcMostHash(QString hashTypeStr, QString filePath)
     if(!stopFlag){
         QString hashValue = QString(cryptHash->result().toHex());
         qDebug() << hashValue;
-        emit textBrowserAppendValue(hashTypeStr+"_value: "+hashValue);
+        emit textBrowserAppendValue(hashTypeStr+": "+hashValue);
     }
 
     file.close();
