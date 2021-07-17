@@ -8,14 +8,19 @@ VariousHash::VariousHash()
 
 void VariousHash::calcHash(QStringList filePaths)
 {
+    stopFlag = false;
     // TODO add crc32 hash calc
     foreach(QString filePath, filePaths){
         emit textBrowserAppendValue(filePath);
 
-        caclMostHash("md5", filePath);
-        caclMostHash("sha1", filePath);
-        caclMostHash("sha256", filePath);
-        caclMostHash("sha512", filePath);
+        QStringList hashTypes = {"md5", "sha1", "sha256", "sha512"};
+        foreach (QString hashType, hashTypes) {
+            calcMostHash(hashType, filePath);
+            if(stopFlag){
+                signal_setCalcStatus(false);
+                return;
+            }
+        }
 
         emit textBrowserAppendValue("\n");
         emit progressBarTotalAddValue();
@@ -24,13 +29,18 @@ void VariousHash::calcHash(QStringList filePaths)
 
 }
 
+void VariousHash::on_stopWork()
+{
+    stopFlag = true;
+}
+
 void VariousHash::doWork(QStringList filePaths)
 {
     QtConcurrent::run(this, &VariousHash::calcHash, filePaths);
 
 }
 
-void VariousHash::caclMostHash(QString hashTypeStr, QString filePath)
+void VariousHash::calcMostHash(QString hashTypeStr, QString filePath)
 {
     QFile file(filePath);
     qint64 fileSize = file.size();
@@ -59,10 +69,14 @@ void VariousHash::caclMostHash(QString hashTypeStr, QString filePath)
             currentSize = fileSize;
         // 不能直接设置进度条最大值，因为文件太大进度条数字就有bug了，还不知道为什么
         emit progressBarFileSetValue(currentSize*100/fileSize);
+        if(stopFlag)
+            break;
     }
-    QString hashValue = QString(cryptHash->result().toHex());
-    qDebug() << hashValue;
-    emit textBrowserAppendValue(hashTypeStr+"_value: "+hashValue);
+    if(!stopFlag){
+        QString hashValue = QString(cryptHash->result().toHex());
+        qDebug() << hashValue;
+        emit textBrowserAppendValue(hashTypeStr+"_value: "+hashValue);
+    }
 
     file.close();
     delete cryptHash;

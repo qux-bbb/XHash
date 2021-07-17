@@ -13,7 +13,10 @@ XHash::XHash(QWidget *parent)
     , ui(new Ui::XHash)
 {
     ui->setupUi(this);
+    ui->pushButton_stop->setDisabled(true);
     connect(this, &XHash::startWork, &variousHash, &VariousHash::doWork);
+    connect(this, &XHash::stopWork, &variousHash, &VariousHash::on_stopWork);
+    connect(&variousHash, &VariousHash::signal_setCalcStatus, this, &XHash::setCalcStatus);
     connect(&variousHash, &VariousHash::progressBarFileSetValue, this, &XHash::on_progressBarFileSetValue);
     connect(&variousHash, &VariousHash::progressBarFileSetMaximum, this, &XHash::on_progressBarFileSetMaximum);
     connect(&variousHash, &VariousHash::hashTypeLabelSetValue, this, &XHash::on_hashTypeLabelSetValue);
@@ -24,6 +27,28 @@ XHash::XHash(QWidget *parent)
 XHash::~XHash()
 {
     delete ui;
+}
+
+void XHash::setCalcStatus(bool calcFlag)
+{
+    ui->checkBox_crc32->setDisabled(calcFlag);
+    ui->checkBox_md5->setDisabled(calcFlag);
+    ui->checkBox_sha1->setDisabled(calcFlag);
+    ui->checkBox_sha256->setDisabled(calcFlag);
+    ui->checkBox_sha512->setDisabled(calcFlag);
+
+    ui->pushButton_browse->setDisabled(calcFlag);
+    ui->pushButton_clear->setDisabled(calcFlag);
+    ui->pushButton_copy->setDisabled(calcFlag);
+    ui->pushButton_save->setDisabled(calcFlag);
+
+    ui->pushButton_stop->setDisabled(!calcFlag);
+
+    if(!calcFlag){
+        ui->progressBar_file->setValue(0);
+        ui->label_hashType->setText("");
+        ui->textBrowser->append("\n");
+    }
 }
 
 
@@ -49,6 +74,8 @@ void XHash::on_pushButton_browse_clicked()
 
     if (filePaths_count==0)
         return;
+
+    setCalcStatus(true);
 
     ui->progressBar_total->setMaximum(filePaths_count);
     ui->progressBar_total->setValue(0);
@@ -81,8 +108,7 @@ void XHash::on_pushButton_save_clicked()
 
 void XHash::on_pushButton_stop_clicked()
 {
-    // TODO
-    ui->textBrowser->setText("on_pushButton_stop_clicked");
+    emit stopWork();
 }
 
 void XHash::on_progressBarFileSetValue(qint64 i)

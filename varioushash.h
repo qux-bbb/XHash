@@ -14,9 +14,11 @@ class VariousHash:public QObject
 public:
     VariousHash();
     void doWork(QStringList filePaths);
+    void on_stopWork();
 
 private:
-    void caclMostHash(QString hashTypeStr, QString filePath);
+    bool stopFlag = false;
+    void calcMostHash(QString hashTypeStr, QString filePath);
     void calcHash(QStringList filePaths);
 
 signals:
@@ -25,6 +27,7 @@ signals:
     void hashTypeLabelSetValue(QString theString);
     void progressBarTotalAddValue();
     void textBrowserAppendValue(QString theString);
+    void signal_setCalcStatus(bool calcFlag);
 };
 
 #endif // VARIOUSHASH_H

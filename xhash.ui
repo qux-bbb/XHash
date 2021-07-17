@@ -247,7 +247,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_512">
+   <widget class="QCheckBox" name="checkBox_sha512">
     <property name="geometry">
      <rect>
       <x>670</x>

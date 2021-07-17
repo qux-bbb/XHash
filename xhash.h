@@ -15,6 +15,7 @@ class XHash : public QMainWindow
 public:
     XHash(QWidget *parent = nullptr);
     ~XHash();
+    void setCalcStatus(bool calcFlag);
 
 private slots:
     void on_pushButton_clear_clicked();
@@ -31,6 +32,7 @@ private slots:
 
 signals:
     void startWork(QStringList filePaths);
+    void stopWork();
 
 private:
     Ui::XHash *ui;
