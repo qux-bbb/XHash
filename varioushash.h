@@ -12,6 +12,10 @@ class VariousHash:public QObject
 {
     Q_OBJECT
 public:
+    bool md5Checked = true;
+    bool sha1Checked = true;
+    bool sha256Checked = false;
+    bool sha512Checked = false;
     VariousHash();
     void doWork(QStringList filePaths);
     void on_stopWork();

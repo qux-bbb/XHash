@@ -13,13 +13,29 @@ void VariousHash::calcHash(QStringList filePaths)
     foreach(QString filePath, filePaths){
         emit textBrowserAppendValue(filePath);
 
-        QStringList hashTypes = {"md5", "sha1", "sha256", "sha512"};
-        foreach (QString hashType, hashTypes) {
-            calcMostHash(hashType, filePath);
-            if(stopFlag){
-                emit signal_setCalcStatus(false);
-                return;
-            }
+        if(md5Checked)
+            calcMostHash("md5", filePath);
+        if(stopFlag){
+            emit signal_setCalcStatus(false);
+            return;
+        }
+        if(sha1Checked)
+            calcMostHash("sha1", filePath);
+        if(stopFlag){
+            emit signal_setCalcStatus(false);
+            return;
+        }
+        if(sha256Checked)
+            calcMostHash("sha256", filePath);
+        if(stopFlag){
+            emit signal_setCalcStatus(false);
+            return;
+        }
+        if(sha512Checked)
+            calcMostHash("sha512", filePath);
+        if(stopFlag){
+            emit signal_setCalcStatus(false);
+            return;
         }
 
         emit textBrowserAppendValue("");
