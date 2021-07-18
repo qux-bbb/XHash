@@ -22,10 +22,11 @@ void VariousHash::calcHash(QStringList filePaths)
             }
         }
 
-        emit textBrowserAppendValue("\n");
+        emit textBrowserAppendValue("");
         emit progressBarTotalAddValue();
     }
     emit hashTypeLabelSetValue("");
+    emit signal_setCalcStatus(false);
 
 }
 

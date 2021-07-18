@@ -47,7 +47,7 @@ void XHash::setCalcStatus(bool calcFlag)
     if(!calcFlag){
         ui->progressBar_file->setValue(0);
         ui->label_hashType->setText("");
-        ui->textBrowser->append("\n");
+        ui->textBrowser->append("");
     }
 }
 
