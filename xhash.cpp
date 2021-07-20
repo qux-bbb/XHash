@@ -42,12 +42,6 @@ void XHash::setCalcStatus(bool calcFlag)
     ui->pushButton_save->setDisabled(calcFlag);
 
     ui->pushButton_stop->setDisabled(!calcFlag);
-
-    if(!calcFlag){
-        ui->progressBar_file->setValue(0);
-        ui->label_hashType->setText("");
-        ui->textBrowser->append("");
-    }
 }
 
 
