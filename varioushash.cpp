@@ -1,5 +1,7 @@
 #include "varioushash.h"
 
+#define BLOCK_SIZE 1024*1024
+
 
 VariousHash::VariousHash()
 {
@@ -86,8 +88,8 @@ void VariousHash::calcMostHash(QString hashTypeStr, QString filePath)
     qint64 currentSize = 0;
     while(!file.atEnd()){
         // unit bytes
-        cryptHash->addData(file.read(1024*1024));
-        currentSize += 1024*1024;
+        cryptHash->addData(file.read(BLOCK_SIZE));
+        currentSize += BLOCK_SIZE;
         if (currentSize > fileSize)
             currentSize = fileSize;
         // 不能直接设置进度条最大值，因为文件太大进度条数字就有bug了，还不知道为什么
@@ -165,11 +167,11 @@ void VariousHash::calcCRC32(QString filePath)
     emit hashTypeLabelSetValue("crc32");
     qint64 currentSize = 0;
     while(!file.atEnd()) {
-        QByteArray data = file.read(1024*1024);
+        QByteArray data = file.read(BLOCK_SIZE);
         for (auto i = 0; i < data.size(); ++i ) {
             crc32 = crc32Table[ ( crc32 ^ data.constData()[ i ]) & 0xff ] ^ ( crc32 >> 8 );
         }
-        currentSize += 1024*1024;
+        currentSize += BLOCK_SIZE;
         if (currentSize > fileSize)
             currentSize = fileSize;
         // 不能直接设置进度条最大值，因为文件太大进度条数字就有bug了，还不知道为什么
