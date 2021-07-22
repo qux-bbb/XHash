@@ -12,6 +12,7 @@ class VariousHash:public QObject
 {
     Q_OBJECT
 public:
+    bool crc32Checked = false;
     bool md5Checked = true;
     bool sha1Checked = true;
     bool sha256Checked = false;
@@ -23,6 +24,7 @@ public:
 private:
     bool stopFlag = false;
     void calcMostHash(QString hashTypeStr, QString filePath);
+    void calcCRC32(QString filePath);
     void calcHash(QStringList filePaths);
 
 signals:

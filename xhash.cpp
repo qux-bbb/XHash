@@ -31,6 +31,7 @@ XHash::~XHash()
 
 void XHash::setCalcStatus(bool calcFlag)
 {
+    ui->checkBox_crc32->setDisabled(calcFlag);
     ui->checkBox_md5->setDisabled(calcFlag);
     ui->checkBox_sha1->setDisabled(calcFlag);
     ui->checkBox_sha256->setDisabled(calcFlag);
@@ -68,7 +69,7 @@ void XHash::on_pushButton_browse_clicked()
     if (filePaths_count==0)
         return;
 
-
+    variousHash.crc32Checked = ui->checkBox_crc32->isChecked();
     variousHash.md5Checked = ui->checkBox_md5->isChecked();
     variousHash.sha1Checked = ui->checkBox_sha1->isChecked();
     variousHash.sha256Checked = ui->checkBox_sha256->isChecked();
