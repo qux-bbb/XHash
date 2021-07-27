@@ -62,7 +62,7 @@ void XHash::on_pushButton_copy_clicked()
 
 void XHash::on_pushButton_browse_clicked()
 {
-    QStringList filePaths = QFileDialog::getOpenFileNames(this, "Open file...", "", "All files (*)");
+    QStringList filePaths = QFileDialog::getOpenFileNames(this, tr("Open file..."), "", tr("All files (*)"));
 
     int filePaths_count = filePaths.count();
 
@@ -88,7 +88,7 @@ void XHash::on_pushButton_save_clicked()
 {
     QString source = ui->textBrowser->toPlainText();
     if (source == ""){
-        QMessageBox::warning(this, "Warning", "The Content can not be empty!", QMessageBox::Ok);
+        QMessageBox::warning(this, tr("Warning"), tr("The Content can not be empty!"), QMessageBox::Ok);
     }else{
         QString filePath = QFileDialog::getSaveFileName(this, tr("Save Result"), "", tr("Text (*.txt);;All Files (*)"));
         if (filePath.isEmpty())
