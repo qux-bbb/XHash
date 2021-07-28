@@ -45,6 +45,56 @@ void XHash::setCalcStatus(bool calcFlag)
     ui->pushButton_stop->setDisabled(!calcFlag);
 }
 
+void XHash::dragEnterEvent(QDragEnterEvent *event)
+{
+    if(event->mimeData()->hasUrls())
+    {
+        event->acceptProposedAction();
+    }
+    else
+    {
+        event->ignore();
+    }
+}
+
+void XHash::dropEvent(QDropEvent *event)
+{
+    if(event->mimeData()->hasUrls())
+    {
+        QList<QUrl> urls = event->mimeData()->urls();
+        qDebug() << urls;
+
+        QStringList filePaths;
+        foreach (QUrl url, urls) {
+            QString filePath = url.toLocalFile();
+            if(QFileInfo(filePath).isFile())
+                filePaths.append(filePath);
+        }
+        prepareAndWork(filePaths);
+    }
+}
+
+void XHash::prepareAndWork(QStringList filePaths)
+{
+    int filePaths_count = filePaths.count();
+
+    if (filePaths_count==0)
+        return;
+
+    variousHash.crc32Checked = ui->checkBox_crc32->isChecked();
+    variousHash.md5Checked = ui->checkBox_md5->isChecked();
+    variousHash.sha1Checked = ui->checkBox_sha1->isChecked();
+    variousHash.sha256Checked = ui->checkBox_sha256->isChecked();
+    variousHash.sha512Checked = ui->checkBox_sha512->isChecked();
+
+    setCalcStatus(true);
+
+    ui->progressBar_total->setMaximum(filePaths_count);
+    ui->progressBar_total->setValue(0);
+
+    emit startWork(filePaths);
+}
+
 
 void XHash::on_pushButton_clear_clicked()
 {
@@ -63,24 +113,7 @@ void XHash::on_pushButton_copy_clicked()
 void XHash::on_pushButton_browse_clicked()
 {
     QStringList filePaths = QFileDialog::getOpenFileNames(this, tr("Open file..."), "", tr("All files (*)"));
-
-    int filePaths_count = filePaths.count();
-
-    if (filePaths_count==0)
-        return;
-
-    variousHash.crc32Checked = ui->checkBox_crc32->isChecked();
-    variousHash.md5Checked = ui->checkBox_md5->isChecked();
-    variousHash.sha1Checked = ui->checkBox_sha1->isChecked();
-    variousHash.sha256Checked = ui->checkBox_sha256->isChecked();
-    variousHash.sha512Checked = ui->checkBox_sha512->isChecked();
-
-    setCalcStatus(true);
-
-    ui->progressBar_total->setMaximum(filePaths_count);
-    ui->progressBar_total->setValue(0);
-
-    emit startWork(filePaths);
+    prepareAndWork(filePaths);
 }
 
 

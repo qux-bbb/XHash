@@ -2,6 +2,7 @@
 #define XHASH_H
 
 #include <QMainWindow>
+#include <QDragEnterEvent>
 #include <varioushash.h>
 
 QT_BEGIN_NAMESPACE
@@ -16,6 +17,11 @@ public:
     XHash(QWidget *parent = nullptr);
     ~XHash();
     void setCalcStatus(bool calcFlag);
+protected:
+    void dragEnterEvent(QDragEnterEvent*event);
+    void dropEvent(QDropEvent *event);
+private:
+    void prepareAndWork(QStringList filePaths);
 
 private slots:
     void on_pushButton_clear_clicked();

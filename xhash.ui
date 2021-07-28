@@ -25,6 +25,9 @@
     <height>600</height>
    </size>
   </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string notr="true">XHash - Q</string>
   </property>
@@ -37,6 +40,9 @@
       <width>780</width>
       <height>380</height>
      </rect>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
     </property>
     <property name="toolTip">
      <string>Drag and drop file or click following button</string>
