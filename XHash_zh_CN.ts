@@ -4,79 +4,89 @@
 <context>
     <name>XHash</name>
     <message>
-        <location filename="xhash.ui" line="42"/>
+        <location filename="xhash.ui" line="48"/>
         <source>Drag and drop file or click following button</source>
         <translation>拖放文件或点击下方按钮</translation>
     </message>
     <message>
-        <location filename="xhash.ui" line="61"/>
+        <location filename="xhash.ui" line="67"/>
         <source>Browse...</source>
         <translation>浏览...</translation>
     </message>
     <message>
-        <location filename="xhash.ui" line="74"/>
+        <location filename="xhash.ui" line="80"/>
         <source>Clear</source>
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="xhash.ui" line="87"/>
+        <location filename="xhash.ui" line="93"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="xhash.ui" line="100"/>
+        <location filename="xhash.ui" line="106"/>
         <source>Save...</source>
         <translation>保存...</translation>
     </message>
     <message>
-        <location filename="xhash.ui" line="113"/>
+        <location filename="xhash.ui" line="119"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="xhash.ui" line="164"/>
+        <location filename="xhash.ui" line="170"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="xhash.ui" line="177"/>
+        <location filename="xhash.ui" line="183"/>
         <source>Total</source>
         <translation>总数</translation>
     </message>
     <message>
-        <location filename="xhash.cpp" line="65"/>
+        <location filename="xhash.ui" line="295"/>
+        <source>About</source>
+        <translation>关于</translation>
+    </message>
+    <message>
+        <location filename="xhash.cpp" line="115"/>
         <source>Open file...</source>
         <translation>打开文件...</translation>
     </message>
     <message>
-        <location filename="xhash.cpp" line="65"/>
+        <location filename="xhash.cpp" line="115"/>
         <source>All files (*)</source>
         <translation>所有文件 (*)</translation>
     </message>
     <message>
-        <location filename="xhash.cpp" line="91"/>
+        <location filename="xhash.cpp" line="124"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="xhash.cpp" line="91"/>
+        <location filename="xhash.cpp" line="124"/>
         <source>The Content can not be empty!</source>
         <translation>内容不能为空</translation>
     </message>
     <message>
-        <location filename="xhash.cpp" line="93"/>
+        <location filename="xhash.cpp" line="126"/>
         <source>Save Result</source>
         <translation>保存结果</translation>
     </message>
     <message>
-        <location filename="xhash.cpp" line="93"/>
+        <location filename="xhash.cpp" line="126"/>
         <source>Text (*.txt);;All Files (*)</source>
         <translation>文本 (*.txt);;所有类型 (*)</translation>
     </message>
     <message>
-        <location filename="xhash.cpp" line="99"/>
+        <location filename="xhash.cpp" line="132"/>
         <source>Unable to open file</source>
         <translation>不能打开文件</translation>
+    </message>
+    <message>
+        <location filename="xhash.cpp" line="176"/>
+        <source>Calculate some file hash: </source>
+        <translation>计算一些文件哈希: </translation>
     </message>
 </context>
 </TS>

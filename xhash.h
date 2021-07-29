@@ -36,6 +36,8 @@ private slots:
     void on_progressBarTotalAddValue();
     void on_textBrowserAppendValue(QString theString);
 
+    void on_pushButton_about_clicked();
+
 signals:
     void startWork(QStringList filePaths);
     void stopWork();
