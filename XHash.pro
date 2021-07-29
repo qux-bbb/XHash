@@ -25,7 +25,7 @@ TRANSLATIONS += \
 CONFIG += lrelease
 CONFIG += embed_translations
 
-RC_ICONS = qhash.ico
+RC_ICONS = xhash.ico
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
