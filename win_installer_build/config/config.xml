@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>XHash</Name>
+    <Version>1.0.0</Version>
+    <Title>XHash Installer</Title>
+    <Publisher>Q</Publisher>
+    <StartMenuDir>XHash</StartMenuDir>
+    <TargetDir>@ApplicationsDir@/XHash</TargetDir>
+</Installer>

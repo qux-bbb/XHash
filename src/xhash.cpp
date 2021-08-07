@@ -62,7 +62,6 @@ void XHash::dropEvent(QDropEvent *event)
     if(event->mimeData()->hasUrls())
     {
         QList<QUrl> urls = event->mimeData()->urls();
-        qDebug() << urls;
 
         QStringList filePaths;
         foreach (QUrl url, urls) {

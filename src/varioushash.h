@@ -6,7 +6,6 @@
 #include <QFile>
 #include <QTextStream>
 #include <QtConcurrent>
-#include <QtDebug>
 
 class VariousHash:public QObject
 {

@@ -99,7 +99,6 @@ void VariousHash::calcMostHash(QString hashTypeStr, QString filePath)
     }
     if(!stopFlag){
         QString hashValue = QString(cryptHash->result().toHex());
-        qDebug() << hashValue;
         emit textBrowserAppendValue(hashTypeStr+": "+hashValue);
     }
 
