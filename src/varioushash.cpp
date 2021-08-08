@@ -68,8 +68,8 @@ void VariousHash::doWork(QStringList filePaths)
 void VariousHash::calcMostHash(QString hashTypeStr, QString filePath)
 {
     QFile file(filePath);
-    qint64 fileSize = file.size();
     file.open(QFile::ReadOnly);
+    qint64 fileSize = file.size();
 
     QCryptographicHash *cryptHash;
     if(hashTypeStr=="md5")

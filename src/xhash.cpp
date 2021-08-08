@@ -66,7 +66,8 @@ void XHash::dropEvent(QDropEvent *event)
         QStringList filePaths;
         foreach (QUrl url, urls) {
             QString filePath = url.toLocalFile();
-            if(QFileInfo(filePath).isFile())
+            QFileInfo fileInfo = QFileInfo(filePath);
+            if(fileInfo.isFile() || fileInfo.isSymLink())
                 filePaths.append(filePath);
         }
         prepareAndWork(filePaths);
@@ -111,7 +112,7 @@ void XHash::on_pushButton_copy_clicked()
 
 void XHash::on_pushButton_browse_clicked()
 {
-    QStringList filePaths = QFileDialog::getOpenFileNames(this, tr("Open file..."), "", tr("All files (*)"));
+    QStringList filePaths = QFileDialog::getOpenFileNames(this, tr("Open file..."), "", tr("All files (*)"), nullptr, QFileDialog::DontResolveSymlinks);
     prepareAndWork(filePaths);
 }
 
