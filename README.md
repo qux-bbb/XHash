@@ -31,4 +31,10 @@ Base on Windows Portable, we can build a Windows Installer.
    For me, command is `D:\Qt\QtIFW-4.1.1\bin\binarycreator.exe -c config\config.xml -p packages XHashInstaller.exe`
 
 ### Linux AppImage
-&&&&&&&  
+Download linuxdeploy and linuxdeploy-plugin-qt(I choose x86_64), put them in the same folder:  
+https://github.com/linuxdeploy/linuxdeploy/releases  
+https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases  
+
+Modify linuxdeploy path in build_appimage.sh  
+
+Run build_appimage.sh in the same directory, then an AppImage file will be generated in linux_build folder  
