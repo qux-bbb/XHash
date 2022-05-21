@@ -41,6 +41,11 @@
       <height>380</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="acceptDrops">
      <bool>false</bool>
     </property>
@@ -122,10 +127,10 @@
    <widget class="QProgressBar" name="progressBar_file">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>60</x>
       <y>470</y>
-      <width>480</width>
-      <height>23</height>
+      <width>520</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="value">
@@ -138,10 +143,10 @@
    <widget class="QProgressBar" name="progressBar_total">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>60</x>
       <y>500</y>
-      <width>480</width>
-      <height>23</height>
+      <width>520</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="minimum">
@@ -160,10 +165,10 @@
    <widget class="QLabel" name="label_file">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>15</x>
       <y>470</y>
-      <width>72</width>
-      <height>15</height>
+      <width>50</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
@@ -173,10 +178,10 @@
    <widget class="QLabel" name="label_total">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>15</x>
       <y>500</y>
-      <width>72</width>
-      <height>15</height>
+      <width>50</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
