@@ -105,8 +105,19 @@ void XHash::on_pushButton_clear_clicked()
 void XHash::on_pushButton_copy_clicked()
 {
     QString source = ui->textBrowser->toPlainText();
-    QClipboard *clipboard = QGuiApplication::clipboard();
-    clipboard->setText(source);
+
+    // 提示消息暂时使用QmessageBox，后面最好改成类似Android的Toast消息
+    QMessageBox msgBox;
+    if (source == ""){
+        msgBox.setText(tr("Emtpy!"));
+    }else{
+        QClipboard *clipboard = QGuiApplication::clipboard();
+        clipboard->setText(source);
+
+        msgBox.setText(tr("Copied"));
+    }
+    msgBox.exec();
+
 }
 
 
