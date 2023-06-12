@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    XHash w;
+    XHash w(argc, argv);
     w.show();
     return a.exec();
 }

@@ -8,11 +8,19 @@
 #include "ui_xhash.h"
 
 
-XHash::XHash(QWidget *parent)
+XHash::XHash(int argc, char *argv[], QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::XHash)
 {
     ui->setupUi(this);
+    if (argc > 1){
+        QString pathListStr;
+        for (int i = 1; i < argc; i++) {
+            pathListStr += argv[i];
+            pathListStr += "\n";
+        }
+        ui->plainTextEdit->setPlainText(pathListStr);
+    }
     ui->pushButton_stop->setDisabled(true);
     connect(this, &XHash::startWork, &variousHash, &VariousHash::doWork);
     connect(this, &XHash::stopWork, &variousHash, &VariousHash::on_stopWork);
@@ -45,6 +53,16 @@ void XHash::setCalcStatus(bool calcFlag)
     ui->pushButton_stop->setDisabled(!calcFlag);
 }
 
+void XHash::setPathList(QStringList pathList)
+{
+    QString pathListStr;
+    foreach (QString tmpPath, pathList) {
+        pathListStr += tmpPath;
+        pathListStr += "\n";
+    }
+    ui->plainTextEdit->setPlainText(pathListStr);
+}
+
 void XHash::dragEnterEvent(QDragEnterEvent *event)
 {
     if(event->mimeData()->hasUrls())
@@ -70,7 +88,7 @@ void XHash::dropEvent(QDropEvent *event)
             if(fileInfo.isFile() || fileInfo.isSymLink())
                 filePaths.append(filePath);
         }
-        prepareAndWork(filePaths);
+        setPathList(filePaths);
     }
 }
 
@@ -124,7 +142,7 @@ void XHash::on_pushButton_copy_clicked()
 void XHash::on_pushButton_browse_clicked()
 {
     QStringList filePaths = QFileDialog::getOpenFileNames(this, tr("Open file..."), "", tr("All files (*)"), nullptr, QFileDialog::DontResolveSymlinks);
-    prepareAndWork(filePaths);
+    setPathList(filePaths);
 }
 
 
@@ -148,6 +166,20 @@ void XHash::on_pushButton_save_clicked()
             }
         }
     }
+}
+
+void XHash::on_pushButton_start_clicked()
+{
+    QString text = ui->plainTextEdit->toPlainText();
+
+    QTextStream stream(&text);
+    QString line;
+    QStringList filePaths;
+    while (!stream.atEnd()) {
+        line = stream.readLine();
+        filePaths.append(line);
+    }
+    prepareAndWork(filePaths);
 }
 
 void XHash::on_pushButton_stop_clicked()
@@ -188,4 +220,3 @@ void XHash::on_pushButton_about_clicked()
     msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse|Qt::LinksAccessibleByMouse);
     msgBox.exec();
 }
-

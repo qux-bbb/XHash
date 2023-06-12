@@ -14,9 +14,10 @@ class XHash : public QMainWindow
     Q_OBJECT
 
 public:
-    XHash(QWidget *parent = nullptr);
+    XHash(int argc, char *argv[], QWidget *parent = nullptr);
     ~XHash();
     void setCalcStatus(bool calcFlag);
+    void setPathList(QStringList pathList);
 protected:
     void dragEnterEvent(QDragEnterEvent*event);
     void dropEvent(QDropEvent *event);
@@ -37,6 +38,8 @@ private slots:
     void on_textBrowserAppendValue(QString theString);
 
     void on_pushButton_about_clicked();
+
+    void on_pushButton_start_clicked();
 
 signals:
     void startWork(QStringList filePaths);
