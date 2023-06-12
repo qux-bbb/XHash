@@ -22,25 +22,25 @@ void VariousHash::calcHash(QStringList filePaths)
         }
 
         if(md5Checked)
-            calcMostHash("md5", filePath);
+            calcMostHash("MD5", filePath);
         if(stopFlag){
             emit signal_setCalcStatus(false);
             return;
         }
         if(sha1Checked)
-            calcMostHash("sha1", filePath);
+            calcMostHash("SHA1", filePath);
         if(stopFlag){
             emit signal_setCalcStatus(false);
             return;
         }
         if(sha256Checked)
-            calcMostHash("sha256", filePath);
+            calcMostHash("SHA256", filePath);
         if(stopFlag){
             emit signal_setCalcStatus(false);
             return;
         }
         if(sha512Checked)
-            calcMostHash("sha512", filePath);
+            calcMostHash("SHA512", filePath);
         if(stopFlag){
             emit signal_setCalcStatus(false);
             return;
@@ -72,13 +72,13 @@ void VariousHash::calcMostHash(QString hashTypeStr, QString filePath)
     qint64 fileSize = file.size();
 
     QCryptographicHash *cryptHash;
-    if(hashTypeStr=="md5")
+    if(hashTypeStr=="MD5")
         cryptHash = new QCryptographicHash(QCryptographicHash::Md5);
-    else if (hashTypeStr=="sha1")
+    else if (hashTypeStr=="SHA1")
         cryptHash = new QCryptographicHash(QCryptographicHash::Sha1);
-    else if (hashTypeStr=="sha256")
+    else if (hashTypeStr=="SHA256")
         cryptHash = new QCryptographicHash(QCryptographicHash::Sha256);
-    else if (hashTypeStr=="sha512")
+    else if (hashTypeStr=="SHA512")
         cryptHash = new QCryptographicHash(QCryptographicHash::Sha512);
     else
         return;
@@ -163,7 +163,7 @@ void VariousHash::calcCRC32(QString filePath)
     file.open(QFile::ReadOnly);
 
     emit progressBarFileSetValue(0);
-    emit hashTypeLabelSetValue("crc32");
+    emit hashTypeLabelSetValue("CRC32");
     qint64 currentSize = 0;
     while(!file.atEnd()) {
         QByteArray data = file.read(BLOCK_SIZE);
@@ -182,7 +182,7 @@ void VariousHash::calcCRC32(QString filePath)
     if(!stopFlag){
         crc32 = crc32 ^ 0xffffffffL;
         QString strCRC = QString::number(crc32, 16);
-        emit textBrowserAppendValue("crc32: "+strCRC);
+        emit textBrowserAppendValue("CRC32: "+strCRC);
     }
 
     file.close();
