@@ -37,13 +37,16 @@ private slots:
     void on_progressBarTotalAddValue();
     void on_textBrowserAppendValue(QString theString);
 
-    void on_pushButton_about_clicked();
-
     void on_pushButton_start_clicked();
+
+    void on_actionAbout_triggered();
 
 signals:
     void startWork(QStringList filePaths);
     void stopWork();
+
+public:
+    QString version = "v1.1.0";
 
 private:
     Ui::XHash *ui;

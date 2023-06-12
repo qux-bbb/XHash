@@ -212,11 +212,12 @@ void XHash::on_textBrowserAppendValue(QString theString)
     ui->textBrowser->append(theString);
 }
 
-void XHash::on_pushButton_about_clicked()
+void XHash::on_actionAbout_triggered()
 {
     QMessageBox msgBox;
     msgBox.setTextFormat(Qt::RichText);
-    msgBox.setText(tr("Calculate some file hash: ")+"<a href='https://github.com/qux-bbb/XHash'>https://github.com/qux-bbb/XHash</a>");
+    msgBox.setText("XHash "+version+"<br>"+tr("Calculate some file hash: ")+"<a href='https://github.com/qux-bbb/XHash'>https://github.com/qux-bbb/XHash</a>");
     msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse|Qt::LinksAccessibleByMouse);
     msgBox.exec();
 }
+
