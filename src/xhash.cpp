@@ -152,7 +152,7 @@ void XHash::on_pushButton_save_clicked()
     if (source == ""){
         QMessageBox::warning(this, tr("Warning"), tr("The Content can not be empty!"), QMessageBox::Ok);
     }else{
-        QString filePath = QFileDialog::getSaveFileName(this, tr("Save Result"), "", tr("Text (*.txt);;All Files (*)"));
+        QString filePath = QFileDialog::getSaveFileName(this, tr("Save Result"), "hash.txt", tr("Text (*.txt);;All Files (*)"));
         if (filePath.isEmpty())
             return;
         else {
