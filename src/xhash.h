@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QDragEnterEvent>
 #include <varioushash.h>
+#include "config.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class XHash; }
@@ -40,6 +41,8 @@ private slots:
     void on_pushButton_start_clicked();
 
     void on_actionAbout_triggered();
+
+    void on_actionConfig_triggered();
 
 signals:
     void startWork(QStringList filePaths);

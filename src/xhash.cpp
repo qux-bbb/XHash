@@ -221,3 +221,11 @@ void XHash::on_actionAbout_triggered()
     msgBox.exec();
 }
 
+
+void XHash::on_actionConfig_triggered()
+{
+    Config c;
+    c.exec();
+
+}
+

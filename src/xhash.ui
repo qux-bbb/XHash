@@ -365,8 +365,9 @@
    </property>
    <widget class="QMenu" name="menuOption">
     <property name="title">
-     <string>Option</string>
+     <string>Tools</string>
     </property>
+    <addaction name="actionConfig"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -380,6 +381,11 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionConfig">
+   <property name="text">
+    <string>Config</string>
    </property>
   </action>
  </widget>
