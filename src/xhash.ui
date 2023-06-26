@@ -228,17 +228,23 @@
            <enum>QLayout::SetFixedSize</enum>
           </property>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,8,1">
+           <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
             <property name="sizeConstraint">
              <enum>QLayout::SetDefaultConstraint</enum>
             </property>
             <item>
              <widget class="QLabel" name="label_file">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
               </property>
               <property name="text">
                <string>File</string>
@@ -259,6 +265,21 @@
               <property name="value">
                <number>0</number>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+              </property>
+              <property name="textVisible">
+               <bool>true</bool>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="invertedAppearance">
+               <bool>false</bool>
+              </property>
+              <property name="textDirection">
+               <enum>QProgressBar::TopToBottom</enum>
+              </property>
               <property name="format">
                <string notr="true">%p%</string>
               </property>
@@ -272,6 +293,12 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="minimumSize">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -280,17 +307,23 @@
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,8,1">
+           <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
             <property name="sizeConstraint">
              <enum>QLayout::SetDefaultConstraint</enum>
             </property>
             <item>
              <widget class="QLabel" name="label_total">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
               </property>
               <property name="text">
                <string>Total</string>
@@ -317,26 +350,26 @@
               <property name="value">
                <number>0</number>
               </property>
+              <property name="alignment">
+               <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+              </property>
               <property name="format">
                <string notr="true">%v/%m</string>
               </property>
              </widget>
             </item>
             <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Preferred</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
+             <widget class="QLabel" name="label_unused">
+              <property name="minimumSize">
                <size>
                 <width>40</width>
                 <height>20</height>
                </size>
               </property>
-             </spacer>
+              <property name="text">
+               <string notr="true"/>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
