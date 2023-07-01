@@ -16,6 +16,7 @@ SOURCES += \
 
 HEADERS += \
     config.h \
+    global.h \
     varioushash.h \
     xhash.h
 
