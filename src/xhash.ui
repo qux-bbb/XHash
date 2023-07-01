@@ -298,8 +298,8 @@
               </property>
               <property name="minimumSize">
                <size>
-                <width>40</width>
-                <height>20</height>
+                <width>50</width>
+                <height>0</height>
                </size>
               </property>
               <property name="text">
@@ -365,8 +365,8 @@
              <widget class="QLabel" name="label_unused">
               <property name="minimumSize">
                <size>
-                <width>40</width>
-                <height>20</height>
+                <width>50</width>
+                <height>0</height>
                </size>
               </property>
               <property name="text">
