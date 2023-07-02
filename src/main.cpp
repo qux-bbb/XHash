@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
     QSettings settings("config.ini", QSettings::IniFormat);
     g_configLanguage = settings.value("language", "English").toString();
@@ -24,11 +24,11 @@ int main(int argc, char *argv[])
     for (const QString &locale : uiLanguages) {
         const QString baseName = "XHash_" + QLocale(locale).name();
         if (translator.load(":/i18n/" + baseName)) {
-            a.installTranslator(&translator);
+            app.installTranslator(&translator);
             break;
         }
     }
-    XHash w(argc, argv);
-    w.show();
-    return a.exec();
+    XHash window(argc, argv);
+    window.show();
+    return app.exec();
 }
