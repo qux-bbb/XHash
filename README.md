@@ -1,5 +1,7 @@
 # XHash
 
+The project is archived. PeaZip's hash function is excellent: https://github.com/peazip/PeaZip
+
 A simple tool for calculating hash, and this is for practicing QT.  
 
 
